@@ -1,0 +1,55 @@
+{
+    "tag": "minecraft-server",
+    "architecture": "linux/arm64",
+    "init": {
+        "entry_path": [
+            "service",
+            "entrypoint.sh"
+        ]
+    },
+    "api": [
+        {
+            "port": 25565,
+            "transport": "tcp",
+            "protocol": [
+                "minecraft"
+            ]
+        }
+    ],
+    "envs": [
+        "MINECRAFT_EULA",
+        "MINECRAFT_ONLINE_MODE",
+        "MINECRAFT_MOTD",
+        "MINECRAFT_MAX_PLAYERS",
+        "MINECRAFT_DIFFICULTY",
+        "MINECRAFT_GAMEMODE",
+        "MINECRAFT_LEVEL_SEED",
+        "MINECRAFT_VIEW_DISTANCE",
+        "MINECRAFT_PVP",
+        "MINECRAFT_WHITELIST",
+        "MINECRAFT_OPS",
+        "MINECRAFT_MEMORY"
+    ],
+    "network": [
+        {
+            "tags": [
+                "sessionserver.mojang.com"
+            ],
+            "prose": "MINECRAFT_ONLINE_MODE defaults to true, and an online-mode server calls sessionserver.mojang.com itself to check that a connecting client really authenticated with Mojang/Microsoft before letting them in. This is the server's own outbound call, not the player's connection, which arrives on the api port below. Set MINECRAFT_ONLINE_MODE=false to run with no egress at all -- at the cost of accepting any username a client claims."
+        }
+    ],
+    "resources": {
+        "at_init": {
+            "mem_limit": 2147483648,
+            "disk_space": 4294967296,
+            "cpu_period": 100000,
+            "cpu_quota": 200000
+        },
+        "at_most": {
+            "mem_limit": 4294967296,
+            "disk_space": 17179869184,
+            "cpu_period": 100000,
+            "cpu_quota": 400000
+        }
+    }
+}
