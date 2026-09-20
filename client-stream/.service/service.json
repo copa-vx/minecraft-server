@@ -1,0 +1,103 @@
+{
+    "tag": "minecraft-server-client-stream",
+    "architecture": "linux/arm64",
+    "init": {
+        "entry_path": [
+            "service",
+            "entrypoint.sh"
+        ]
+    },
+    "api": [
+        {
+            "port": 47989,
+            "transport": "tcp",
+            "protocol": [
+                "http",
+                "gamestream"
+            ]
+        },
+        {
+            "port": 47984,
+            "transport": "tcp",
+            "protocol": [
+                "https",
+                "gamestream"
+            ]
+        },
+        {
+            "port": 47990,
+            "transport": "tcp",
+            "protocol": [
+                "https",
+                "rest"
+            ]
+        },
+        {
+            "port": 48010,
+            "transport": "tcp",
+            "protocol": [
+                "rtsp"
+            ]
+        },
+        {
+            "port": 47998,
+            "transport": "udp",
+            "protocol": [
+                "rtp"
+            ]
+        },
+        {
+            "port": 47999,
+            "transport": "udp",
+            "protocol": [
+                "enet"
+            ]
+        },
+        {
+            "port": 48000,
+            "transport": "udp",
+            "protocol": [
+                "rtp"
+            ]
+        },
+        {
+            "port": 48002,
+            "transport": "udp",
+            "protocol": [
+                "rtp"
+            ]
+        }
+    ],
+    "envs": [
+        "MINECRAFT_EULA",
+        "MINECRAFT_USERNAME",
+        "MINECRAFT_DIFFICULTY",
+        "MINECRAFT_GAMEMODE",
+        "MINECRAFT_LEVEL_SEED",
+        "MINECRAFT_VIEW_DISTANCE",
+        "MINECRAFT_MEMORY",
+        "MINECRAFT_CLIENT_MEMORY",
+        "WIDTH",
+        "HEIGHT",
+        "FPS",
+        "SW_PRESET",
+        "TIMEZONE",
+        "ADMIN_USER",
+        "ADMIN_PASS"
+    ],
+    "network": [],
+    "resources": {
+        "at_init": {
+            "mem_limit": 4294967296,
+            "disk_space": 8589934592,
+            "cpu_period": 100000,
+            "cpu_quota": 300000
+        },
+        "at_most": {
+            "mem_limit": 10737418240,
+            "disk_space": 25769803776,
+            "cpu_period": 100000,
+            "cpu_quota": 600000
+        }
+    }
+}

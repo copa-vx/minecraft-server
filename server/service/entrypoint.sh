@@ -272,6 +272,12 @@ main() {
     read_environment
     check_memory_fits_cgroup
     write_configuration
+    # write_configuration and the mkdir -p calls in it run as root; everything
+    # they create under /data is root-owned until this, and the JVM below runs
+    # as minecraft. Without it the server still starts -- log4j and
+    # server.properties-rewrite failures are non-fatal -- but silently, with no
+    # world log and every properties rewrite failing from here on.
+    chown -R minecraft:minecraft "$DATA_DIR"
     open_console
 
     cd "$DATA_DIR"
